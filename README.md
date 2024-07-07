@@ -1,7 +1,10 @@
 # bo_fucking_dies.gif
 
-That one gif, but I actually modded it into [Super Bo Noise](https://puffballspeakerbox.itch.io/super-bo-noise). Go to Lake Eerie and watch Bo Noise fucking die from drinking the oil. I did not make the gif, idk where it came from originally.
+That one gif, but I actually modded it into [Super Bo Noise](https://puffballspeakerbox.itch.io/super-bo-noise). 
+
 ![bo_fucking_dies.gif](gif_used_in_readme.gif)
+
+Go to Lake Eerie and watch Bo Noise fucking die from drinking the oil. I did not make the gif, idk where it came from originally.
 
 # Installation
 
