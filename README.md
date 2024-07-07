@@ -13,7 +13,7 @@ As Super Bo Noise was compiled with the YoYoCompiler, you can't modify the code 
 4. Click "Add Game" and select Super Bo Noise's .exe
 5. Click "Install Aurie"
 6. Click "Add Mods" and select the `bo_fucking_dies.gif.dll` you downloaded
-7. Click "Play Game" and hope it doesn't crash
+7. Click "Play Game" and hope it doesn't crash or not load
 
 # Compiling
 
