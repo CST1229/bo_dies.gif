@@ -17,6 +17,7 @@ RValue& OilHook(
 	int ArgumentCount,
 	RValue** Arguments
 ) {
+	// sprite and script indices
 	static double spr_player_oilintro2 = -1.0;
 	if (spr_player_oilintro2 == -1.0)
 		spr_player_oilintro2 = g_YYTKInterface->CallBuiltin("asset_get_index", {"spr_player_oilintro2"}).AsReal();
@@ -27,17 +28,24 @@ RValue& OilHook(
 	if (oilcutscene_function != nullptr)
 		oilcutscene_function(Self, Other, ReturnValue, ArgumentCount, Arguments);
 
+	// if we're on the second oil drinking animation...
 	RValue value;
 	last_status = g_YYTKInterface->GetBuiltin("sprite_index", Self, NULL_INDEX, value);
 	if (AurieSuccess(last_status) && value.AsReal() == spr_player_oilintro2) {
 		last_status = g_YYTKInterface->GetBuiltin("image_index", Self, NULL_INDEX, value);
 		if (AurieSuccess(last_status)) {
 			double image_index = value.AsReal();
+
 			if (image_index >= 15.0) {
+				// last frame of the gravestone
+				
+				// stop the animation entirely
 				RValue zero = RValue(0.0);
 				g_YYTKInterface->SetBuiltin("image_speed", Self, NULL_INDEX, zero);
 			} else if (image_index >= 11.0) {
+				// first frame of the gravestone
 				// bo died. rest in bo
+				// 
 				// mute the music
 				g_YYTKInterface->CallBuiltin(
 					"script_execute",
@@ -48,6 +56,7 @@ RValue& OilHook(
 					}
 				);
 
+				// make it go 1 frame per minute
 				RValue imagespeed = RValue(1.0 / 3600.0); // 1 minute
 				g_YYTKInterface->SetBuiltin("image_speed", Self, NULL_INDEX, imagespeed);
 
@@ -58,6 +67,7 @@ RValue& OilHook(
 					}
 				);
 
+				// hide the hud because that contains the tv and bo just died
 				g_YYTKInterface->CallBuiltin("variable_global_set",
 					{"option_hud", false}
 				);
@@ -83,7 +93,7 @@ EXPORTED AurieStatus ModuleInitialize(
 
 	if (!AurieSuccess(last_status)) return AURIE_MODULE_DEPENDENCY_NOT_RESOLVED;
 	
-	// replace spr_player_oilintro2
+	// replace spr_player_oilintro2 with the funny gif
 	char filename[] = "temp_sprite.png";
 	RValue handle = g_YYTKInterface->CallBuiltin("file_bin_open", {filename, 1});
 	if (handle.AsReal() < 0.0) {
@@ -106,6 +116,7 @@ EXPORTED AurieStatus ModuleInitialize(
 	});
 	g_YYTKInterface->CallBuiltin("file_delete", {filename});
 
+	// screw error handling!!!
 	CScript* script_data = nullptr;
 	g_YYTKInterface->GetNamedRoutinePointer(
 		"gml_Script_state_player_oilcutscene",
