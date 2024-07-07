@@ -14,6 +14,7 @@ As Super Bo Noise was compiled with the YoYoCompiler, you can't modify the code 
 5. Click "Install Aurie"
 6. Click "Add Mods" and select the `bo_fucking_dies.gif.dll` you downloaded
 7. Click "Play Game" and hope it doesn't crash or not load
+8. If you want to uninstall the mod, in Aurie Manager select `bo_fucking_dies.gif.dll` in the mod list then click "Delete Mods". You can also remove the loader entirely by clicking "Uninstall Aurie", and even remove the whole `mods` folder Aurie Manager creates in the Super Bo Noise folder
 
 # Compiling
 
